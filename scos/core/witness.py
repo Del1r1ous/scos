@@ -42,17 +42,20 @@ class WitnessProtocol:
         # Update fingerprint log
         self.fingerprint_generator.add_witness(current_fingerprint.hash)
         
+        # Get timestamp for deterministic hashing
+        witness_timestamp = time.time()
+        
         # Build witness
         witness = Witness(
             version='1.0.0',
             index=self.witness_count,
             previous_hash=self._get_previous_hash(),
-            timestamp=time.time(),
+            timestamp=witness_timestamp,
             operation=operation,
             fingerprint_hash=current_fingerprint.hash,
             state_delta=self._compute_delta(self.chain[-1], current_fingerprint),
-            signature=self._sign_witness(operation, result, current_fingerprint),
-            hash=self._compute_hash(operation, result, current_fingerprint)
+            signature=self._sign_witness(operation, result, current_fingerprint, witness_timestamp),
+            hash=self._compute_hash(operation, result, current_fingerprint.hash, witness_timestamp)
         )
         
         # Add to chain
@@ -84,37 +87,41 @@ class WitnessProtocol:
             'changed': prev_hash != new_fingerprint.hash
         }
     
-    def _sign_witness(self, operation, result, fingerprint) -> str:
+    def _sign_witness(self, operation, result, fingerprint, timestamp) -> str:
         """Sign the witness"""
         data = {
             'operation': operation,
             'result': result,
             'fingerprint': fingerprint.hash,
-            'timestamp': time.time()
+            'timestamp': timestamp
         }
         return hashlib.sha3_512(str(data).encode()).hexdigest()
     
-    def _compute_hash(self, operation, result, fingerprint) -> str:
-        """Compute witness hash"""
+    def _compute_hash(self, operation, result, fingerprint_hash: str, timestamp: float) -> str:
+        """
+        Compute witness hash deterministically.
+        Uses stored timestamp instead of calling time.time() to ensure verification works.
+        """
         data = {
             'operation': operation,
             'result': result,
-            'fingerprint': fingerprint.hash,
-            'timestamp': time.time()
+            'fingerprint': fingerprint_hash,
+            'timestamp': timestamp
         }
         return hashlib.sha3_256(str(data).encode()).hexdigest()
     
     def verify_witness(self, witness: Witness) -> Tuple[bool, str]:
         """Verify a witness"""
         
-        # 1. Verify hash
+        # 1. Verify hash using stored timestamp (deterministic)
         computed_hash = self._compute_hash(
             witness.operation,
             None,
-            self.fingerprint_generator
+            witness.fingerprint_hash,
+            witness.timestamp
         )
         if computed_hash != witness.hash:
-            return False, "Invalid witness hash"
+            return False, f"Invalid witness hash: expected {computed_hash}, got {witness.hash}"
         
         # 2. Verify signature
         if not self._verify_signature(witness):
