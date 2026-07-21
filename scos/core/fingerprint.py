@@ -4,6 +4,7 @@ PUF-based authentication - hardware identity
 """
 
 import hashlib
+import logging
 import os
 import time
 from typing import Dict, Any, Tuple
@@ -136,7 +137,9 @@ class FingerprintGenerator:
                 'network_connections': len(psutil.net_connections()),
                 'temperature': 42.3  # Simulated
             }
-        except:
+        except Exception as e:
+            # Log the error instead of silently failing (Issue #6)
+            logging.warning(f"Failed to get hardware state: {e}. Using defaults.")
             return {
                 'uptime': time.time() - self.boot_time,
                 'cpu_usage': 15.5,
@@ -165,19 +168,27 @@ class FingerprintGenerator:
         self.witness_log.append(witness_hash)
 
     def verify(self, fingerprint: Fingerprint) -> Tuple[bool, str]:
-        """Verify a fingerprint"""
-        # Regenerate and compare
-        regenerated = self.generate()
+        """
+        Verify a fingerprint by checking identity components.
         
-        if regenerated.hash != fingerprint.hash:
-            return False, "Fingerprint hash mismatch"
+        Unlike device state (CPU, memory, temperature), which changes constantly,
+        hardware identity (hardware_id, PUF response) should remain stable.
+        This verification focuses on identity, not state.
         
-        # Verify PUF
+        Fixes Issue #1: Compare components instead of full state hash.
+        """
+        
+        # Verify hardware identity is consistent
+        if fingerprint.components['identity']['hardware_id'] != self.puf.hardware_id:
+            return False, "Hardware identity mismatch"
+        
+        # Verify PUF response is valid
+        stored_puf = bytes.fromhex(fingerprint.components['identity']['puf_response'])
         if not self.puf.verify(
             fingerprint.components['identity']['hardware_id'],
             b'challenge',
-            bytes.fromhex(fingerprint.components['identity']['puf_response'])
+            stored_puf
         ):
             return False, "PUF verification failed"
         
-        return True, "Fingerprint verified"
+        return True, "Fingerprint verified (identity components valid)"
