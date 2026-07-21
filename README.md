@@ -3,7 +3,7 @@
 **A physical consensus architecture for un-censorable computation**
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/yourusername/scos)
-[![Status](https://img.shields.io/badge/status-production_ready-green)](https://github.com/yourusername/scos)
+[![Status](https://img.shields.io/badge/status-production_ready-green)]((https://github.com/Del1r1ous/scos.git))
 [![License](https://img.shields.io/badge/license-MIT-purple)](https://github.com/yourusername/scos/blob/main/LICENSE)
 
 ## Overview
