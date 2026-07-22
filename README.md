@@ -26,7 +26,7 @@ SCOS (Self-Conscious Operating System) establishes trust through physical consen
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/scos.git
+git clone https://github.com/Del1r1ous/scos.git
 cd scos
 
 # Install
