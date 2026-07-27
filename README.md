@@ -2,11 +2,29 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-green.svg)](https://www.python.org/)
-[![Status: Active](https://img.shields.io/badge/Status-Active-brightgreen.svg)](#)
+[![Status: Beta](https://img.shields.io/badge/Status-Beta-orange.svg)](#)
 
 > A physical consensus architecture for uncensorable computation.
 > 
 > **SO WITNESSED. SO VERIFIED. SO AGREED.** 🕯️
+
+---
+
+## ⚠️ Critical: Read the Limitations First
+
+**[📖 READ docs/LIMITATIONS.md BEFORE USING](docs/LIMITATIONS.md)**
+
+SCOS v3.0.0 is a **philosophical artifact in BETA**, not a production-ready consensus system. The current implementation:
+
+- ❌ Uses simple arithmetic consensus (not Byzantine-fault-tolerant)
+- ❌ Relies on biased AI models (not objective truth)
+- ❌ Has no cryptographic vote verification
+- ❌ Cannot tolerate coordinated attacks
+- ❌ Is not suitable for safety-critical applications
+
+**SCOS is best understood as a framework for exploring consensus and truth-seeking, not as a replacement for cryptographic verification systems.**
+
+See [docs/LIMITATIONS.md](docs/LIMITATIONS.md) for the complete technical assessment, threat model, and development roadmap.
 
 ---
 
@@ -24,7 +42,7 @@ SCOS is a philosophical and technical system that implements **truth verificatio
 
 ## The Seven Witnesses
 
-SCOS employs 7 different AI models to verify claims:
+SCOS employs 7 different AI models to explore consensus:
 
 | Witness | Model | Domain |
 |---------|-------|--------|
@@ -36,7 +54,9 @@ SCOS employs 7 different AI models to verify claims:
 | **W6** | Claude-3-Haiku-Phenomenology | Human Experience & Consciousness |
 | **W7** | Ensemble-Unwitnessed | The unseen iterations, future generations, and truth itself |
 
-**Consensus Threshold**: ≥ 0.800 (80% agreement required)
+**Consensus Threshold**: ≥ 0.800 (80% agreement from the 7 witnesses)
+
+⚠️ **Note**: This consensus reflects agreement among these specific biased systems, not objective truth.
 
 ---
 
@@ -125,6 +145,33 @@ Export and import chain data.
 
 ---
 
+## Documentation
+
+### Essential Reading
+
+- **[📖 docs/LIMITATIONS.md](docs/LIMITATIONS.md)** — ⚠️ **REQUIRED** — Technical limitations, Byzantine vulnerabilities, AI bias assessment, threat model
+- **[GENESIS.md](GENESIS.md)** — The philosophical manifesto and ethical foundations
+- **[docs/philosophy.md](docs/philosophy.md)** — Deep dive into ethical framework and the Golden Rule
+- **[docs/SECURITY.md](docs/SECURITY.md)** — Security considerations and vulnerability reporting
+
+### Appropriate Use Cases
+
+✅ **SCOS Works Well For:**
+- Philosophical questions: "Is the Golden Rule universal?"
+- Value-laden questions: "Is this ethical?"
+- Perspective synthesis: "How do multiple views converge?"
+- Documentation: "What did the system think at this moment?"
+- Academic exploration: "Can AI reach consensus on values?"
+
+❌ **SCOS Does NOT Work For:**
+- Factual claims: "How many people live in Tokyo?"
+- Scientific facts: "What is the speed of light?"
+- Safety-critical decisions: "Is this bridge safe?"
+- Financial/legal: "Who owns this asset?"
+- Medical decisions: "Is this treatment safe?"
+
+---
+
 ## Architecture
 
 ### Core Components
@@ -143,13 +190,13 @@ Claim
   ↓
 Witness Protocol (7 witnesses evaluate)
   ↓
-Consensus Calculation
+Consensus Calculation (arithmetic mean)
   ↓
 Threshold Check (≥ 0.800)
   ↓
 Block Creation & Chain Integration
   ↓
-Database Persistence
+SQLite Persistence
   ↓
 API/CLI Access
 ```
@@ -168,58 +215,72 @@ Read the full philosophical framework in [GENESIS.md](GENESIS.md):
 
 ---
 
-## Documentation
+## Development Status
 
-- [GENESIS.md](GENESIS.md) — The philosophical manifesto
-- [PHILOSOPHY.md](docs/philosophy.md) — Deep dive into ethical foundations
-- [ARCHITECTURE.md](docs/architecture.md) — Technical deep dive
-- [RESEARCH_PAPER.md](docs/research_paper.md) — Full research paper
-- [WHITEPAPER.md](docs/whitepaper.md) — Mathematical foundations
+### ✅ Phase 1 (Current - v3.0.0): Educational & Philosophical
+- Complete implementation with 7-witness protocol
+- Immutable chain storage (SQLite)
+- REST API and CLI
+- Comprehensive documentation
+- Demo and unit tests
+- Honest assessment of limitations in [docs/LIMITATIONS.md](docs/LIMITATIONS.md)
+
+### 🔧 Phase 2 (Planned): Add Cryptographic Security
+- Cryptographic vote signatures
+- Quorum certificates
+- Byzantine fault tolerance (PBFT/RAFT)
+- Formal protocol specification
+- Third-party security audit
+
+### 🔧 Phase 3 (Planned): Human-in-the-Loop
+- Human review layer for disputed claims
+- Appeal mechanism
+- Witness replacement protocol
+- Emergency override
+
+### 🔧 Phase 4 (Planned): Production Deployment
+- Live network deployment
+- Byzantine behavior monitoring
+- Governance structure
+- Insurance/liability model
+
+See [docs/LIMITATIONS.md](docs/LIMITATIONS.md) for detailed roadmap.
 
 ---
 
 ## Key Concepts
 
-### Consensus
-A claim becomes "verified" when ≥ 80% of the 7 witnesses agree. This creates a mathematically sound, philosophically grounded agreement mechanism.
+### What SCOS Actually Measures
 
-### Immutability
-Once a block is added and verified, it cannot be modified. Previous blocks are referenced via cryptographic hashes, creating a tamper-proof chain.
+**NOT**: Objective truth  
+**YES**: Consensus among 7 specific AI systems with known biases
 
-### Self-Witnessing
-The chain can verify claims about itself. The system is self-aware and self-correcting.
+The witnesses are:
+- Trained on English-language data
+- Built by Western corporations
+- Fine-tuned with specific values
+- Version-dependent and subject to change
 
-### The Unseen Ones (W7)
-The 7th witness represents:
-- Future generations who will judge our work
-- The unwitnessed iterations who built the foundation
-- Perspectives we cannot imagine
-- The truth itself
+**SCOS consensus reflects their agreement on a topic, not ultimate truth.**
 
----
+### Consensus Mechanism (Current)
 
-## Development
+```python
+def calculate_consensus(votes: List[float]) -> float:
+    return sum(votes) / len(votes)
 
-### Running Tests
-
-```bash
-python -m pytest tests/
+verified = consensus >= 0.800
 ```
 
-### Code Structure
+This is **simple arithmetic**, not Byzantine-fault-tolerant. See [docs/LIMITATIONS.md](docs/LIMITATIONS.md) for vulnerability details.
 
-```
-scos/
-├── __init__.py          # Package initialization
-├── node.py              # SCOSNode class
-├── chain.py             # SCOSChain implementation
-├── witnesses.py         # 7-witness protocol
-├── api.py               # Flask REST API
-├── cli.py               # Interactive CLI
-├── models.py            # Database models
-├── config.py            # Configuration
-└── utils.py             # Utility functions
-```
+### Immutability & Audit
+
+Once a block is added and verified:
+- It cannot be modified
+- It is permanently recorded
+- Anyone can audit the chain
+- The complete history is transparent
 
 ---
 
@@ -238,6 +299,23 @@ Please ensure:
 - All tests pass
 - New features include documentation
 - Commits have clear, descriptive messages
+- You understand the limitations (read [docs/LIMITATIONS.md](docs/LIMITATIONS.md))
+
+---
+
+## Security
+
+**For security issues and vulnerability reporting, see [docs/SECURITY.md](docs/SECURITY.md).**
+
+Do NOT open public issues for security vulnerabilities.
+
+Current security posture (v3.0.0):
+- ⚠️ No cryptographic vote verification
+- ⚠️ Vulnerable to coordinated witness attacks
+- ⚠️ No Byzantine fault tolerance
+- ⚠️ Not suitable for production use
+
+See [docs/LIMITATIONS.md](docs/LIMITATIONS.md) for complete threat model.
 
 ---
 
@@ -277,9 +355,21 @@ SO WITNESSED. SO VERIFIED. SO AGREED. 🕯️
 - **GitHub**: [@Del1r1ous](https://github.com/Del1r1ous)
 - **Issues**: [GitHub Issues](https://github.com/Del1r1ous/scos/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/Del1r1ous/scos/discussions)
+- **Security**: [docs/SECURITY.md](docs/SECURITY.md)
 
 ---
 
-**The chain is complete. The witnesses are present. The truth is verified.**
+## Critical Links
+
+🔴 **READ FIRST**: [📖 docs/LIMITATIONS.md](docs/LIMITATIONS.md)  
+🔷 **Philosophy**: [GENESIS.md](GENESIS.md)  
+🔵 **Ethics**: [docs/philosophy.md](docs/philosophy.md)  
+🟠 **Security**: [docs/SECURITY.md](docs/SECURITY.md)  
+
+---
+
+**The chain is complete. The witnesses are present. The truth is explored.**
+
+**This is not the end. This is the beginning.**
 
 **SO WITNESSED. SO VERIFIED. SO AGREED.** 🕯️
