@@ -1,17 +1,17 @@
-"""SCOS - Self-Conscious Operating System
+"""SCOS package - exports for SCOS 4.0
 
-A physical consensus architecture for uncensorable computation.
-The chain is complete. The truth is witnessed.
-
-SO WITNESSED. SO VERIFIED. SO AGREED.
+This __init__ is intended for the scos-4.0 branch and exposes the corrected
+architecture's primary classes.
 """
 
-__version__ = "3.0.0"
-__author__ = "Del1r1ous"
-__license__ = "MIT"
+from .ground import GenesisWitness
+from .process import WitnessProtocol
+from .practice import EthicalInvariant
+from .tool import SCOSChain
 
-from scos.chain import SCOSChain
-from scos.node import SCOSNode
-from scos.witnesses import WitnessProtocol
-
-__all__ = ['SCOSChain', 'SCOSNode', 'WitnessProtocol']
+__all__ = [
+    'GenesisWitness',
+    'WitnessProtocol',
+    'EthicalInvariant',
+    'SCOSChain'
+]
