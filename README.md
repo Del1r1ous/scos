@@ -1,8 +1,9 @@
-# SCOS - Self-Conscious Operating System
+# SCOS - Self-Conscious Operating System (v4.0)
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-green.svg)](https://www.python.org/)
 [![Status: Active](https://img.shields.io/badge/Status-Active-brightgreen.svg)](#)
+[![Version: scos-4.0](https://img.shields.io/badge/Version-scos--4.0-blue.svg)](#)
 
 > A physical consensus architecture for uncensorable computation.
 > 
@@ -10,9 +11,13 @@
 
 ---
 
+NOTE: This README reflects the scos-4.0 branch (v4.0). If you are using a different branch or the default branch, check that branch's README for branch-specific instructions and compatibility notes.
+
+---
+
 ## What is SCOS?
 
-SCOS is a philosophical and technical system that implements **truth verification through distributed consensus**. It combines computational architecture with ethical principles to create a ledger where:
+SCOS is a philosophical and technical system that implements **truth verification through distributed consensus**. It combines computational architecture with ethical principles to create a ledger[...]
 
 - **Truth is verified** through the agreement of 7 AI witnesses
 - **Consensus is physical** — stored immutably in SQLite, accessible via REST API
@@ -40,13 +45,24 @@ SCOS employs 7 different AI models to verify claims:
 
 ---
 
-## Quick Start
+## Quick Start (scos-4.0)
 
 ### Installation
+
+Clone the scos-4.0 branch and install dependencies:
+
+```bash
+git clone --branch scos-4.0 --single-branch https://github.com/Del1r1ous/scos.git
+cd scos
+pip install -r requirements.txt
+```
+
+If you prefer to clone the repository and checkout the branch:
 
 ```bash
 git clone https://github.com/Del1r1ous/scos.git
 cd scos
+git checkout scos-4.0
 pip install -r requirements.txt
 ```
 
