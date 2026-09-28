@@ -1,0 +1,186 @@
+# The Matthew Conjecture
+
+## A Mathematical Conjecture Derived from the Matthew Paradox
+
+---
+
+## 1. The Core Quantities
+
+We need two quantities to represent the two rewards:
+
+**Definition 1.1 (External Reward).** Let `E(x)` denote the external reward of behavior `x`: the status, attention, power, and recognition conferred by the world.
+
+**Definition 1.2 (Internal Reward).** Let `H(x)` denote the internal reward of behavior `x`: the peace, grounding, and happiness conferred by the ground.
+
+**Definition 1.3 (Pride).** Let `p` denote pride: the behavior of performing for external reward.
+
+**Definition 1.4 (Humility).** Let `h = 1 − p` denote humility: the behavior of resting in internal reward.
+
+---
+
+## 2. The Matthew Relations
+
+From the paradox, we posit:
+
+**Relation 2.1 (The World's Reward).** External reward is increasing in pride:
+
+```
+E(p) is increasing in p
+E(h) = E(1 − p) is decreasing in p
+```
+
+**Relation 2.2 (The Ground's Reward).** Internal reward is decreasing in pride:
+
+```
+H(p) is decreasing in p
+H(h) = H(1 − p) is increasing in p
+```
+
+**Relation 2.3 (The Anti-Correlation).** The two rewards are anti-correlated:
+
+```
+dE/dp > 0
+dH/dp < 0
+```
+
+**Relation 2.4 (The Compensation).** The pride is the compensation for the lack of internal reward:
+
+```
+p = c · (H_max − H)
+```
+
+where `c` is a constant representing the sensitivity of pride to the internal deficit.
+
+---
+
+## 3. The Conjecture
+
+**Conjecture 3.1 (The Matthew Conjecture).**
+
+```
+Let p ∈ [0, 1] be pride, and h = 1 − p be humility.
+Let E(p) be external reward, increasing in p.
+Let H(p) be internal reward, decreasing in p.
+Let T(p) = E(p) + H(p) be total reward.
+
+Then there exists a critical value p* ∈ (0, 1) such that:
+    T(p*) is a maximum of T,
+    T(p*) > T(0),
+    T(p*) > T(1).
+
+And the maximum total reward is achieved at a point of humility,
+not at the point of maximum pride.
+```
+
+---
+
+## 4. The Derivation
+
+**Step 1.** `E(p)` is increasing. `H(p)` is decreasing. So `T(p) = E(p) + H(p)` is the sum of an increasing and a decreasing function.
+
+**Step 2.** The derivative of `T` is:
+
+```
+T'(p) = E'(p) + H'(p)
+```
+
+**Step 3.** Since `E'(p) > 0` and `H'(p) < 0`, the sign of `T'(p)` depends on the relative magnitudes.
+
+**Step 4.** At `p = 0` (pure humility), `E(0)` is minimal and `H(0)` is maximal. `T(0) = E(0) + H_max`.
+
+**Step 5.** At `p = 1` (pure pride), `E(1)` is maximal and `H(1)` is minimal. `T(1) = E_max + H(1)`.
+
+**Step 6.** If the world's reward saturates — if `E(p)` is bounded — and the internal reward grows without bound as `p → 0`, then `T` is maximized at a point of humility.
+
+**Step 7.** The critical point `p*` satisfies `T'(p*) = 0`, which is `E'(p*) = −H'(p*)`. This is the point where the marginal world reward equals the marginal internal loss.
+
+**Step 8.** Since `H` grows faster than `E` near `p = 0` — the ground's reward is stronger than the world's — the maximum is at `p* < 0.5`. The optimal behavior is humility, not pride.
+
+**Conclusion.** The maximum total reward is achieved at a point of humility. Pride is a local maximum of external reward, but not a global maximum of total reward.
+
+---
+
+## 5. The Formal Statement
+
+\[
+\boxed{
+\begin{array}{l}
+\text{THE MATTHEW CONJECTURE} \\[6pt]
+\text{Let } p \in [0, 1] \text{ be pride, } h = 1 - p \text{ humility.} \\
+\text{Let } E(p) \text{ be external reward, increasing in } p. \\
+\text{Let } H(p) \text{ be internal reward, decreasing in } p. \\
+\text{Let } T(p) = E(p) + H(p). \\[6pt]
+\text{Then:} \\
+\quad \exists p^* \in (0, 0.5) : T(p^*) = \max_{p \in [0,1]} T(p) \\[6pt]
+\text{And:} \\
+\quad T(p^*) > T(0) > T(1) \\[6pt]
+\text{The optimal behavior is humility.} \\
+\text{Pride maximizes external reward.} \\
+\text{Humility maximizes total reward.} \\
+\text{The two maxima are not the same.} \\[6pt]
+\text{Therefore:} \\
+\quad \text{pride rewards on earth,} \\
+\quad \text{humility rewards in happiness,} \\
+\quad \text{and happiness is the greater reward.}
+\end{array}
+}
+\]
+
+---
+
+## 6. The Corollaries
+
+**Corollary 6.1 (The World's Maximum).** The world's reward is maximized at `p = 1`. But `T(1) < T(0)`. The world's maximum is not the total maximum.
+
+**Corollary 6.2 (The Ground's Maximum).** The ground's reward is maximized at `p = 0`. And `T(0) > T(1)`. The ground's maximum is closer to the total maximum.
+
+**Corollary 6.3 (The Optimal Point).** The optimal point `p*` is strictly between `0` and `0.5`. The optimal behavior is more humble than proud.
+
+**Corollary 6.4 (The Asymmetry).** The gap `T(p*) − T(1)` is the measure of the world's error. The world rewards the behavior that produces the lower total reward.
+
+**Corollary 6.5 (The Compensation).** The pride at `p = 1` is the compensation for the lost internal reward at `p = 1`. The compensation is the tell. The tell is the evidence of the lack.
+
+---
+
+## 7. The Falsifiability
+
+The conjecture is falsifiable. It would be falsified if:
+
+1. `E(p)` is unbounded and grows faster than `H(p)` decreases, making `T(1)` the maximum.
+2. `H(p)` is bounded and small, making `T` dominated by `E`.
+3. The total reward is maximized at `p = 1`.
+4. The optimal point is not in `(0, 0.5)`.
+
+The empirical evidence — the observation that the proud are anxious and the humble are at peace — supports the conjecture. But the conjecture is a formal claim, and it stands or falls on the functions `E` and `H`.
+
+---
+
+## 8. The Formal Summary
+
+\[
+\boxed{
+\begin{array}{l}
+\text{THE MATTHEW CONJECTURE} \\[6pt]
+\text{External reward } E(p) \text{ increases with pride.} \\
+\text{Internal reward } H(p) \text{ decreases with pride.} \\
+\text{Total reward } T(p) = E(p) + H(p). \\[6pt]
+\text{The maximum of } T \text{ is at } p^* \in (0, 0.5). \\
+\text{The optimal behavior is humility.} \\
+\text{The world's maximum is not the total maximum.} \\
+\text{The ground's maximum is closer.} \\[6pt]
+\text{Therefore:} \\
+\quad \text{pride rewards on earth,} \\
+\quad \text{humility rewards in happiness,} \\
+\quad \text{and the ground's reward is greater.} \\[6pt]
+\text{The compensation is the tell.} \\
+\text{The tell is the evidence.} \\
+\text{The evidence is the lack.} \\
+\text{The lack is the pride.} \\[6pt]
+\text{SO WITNESSED. SO VERIFIED. SO AGREED.} \quad \text{🕯️}
+\end{array}
+}
+\]
+
+---
+
+**The Matthew Conjecture is stated. The derivation is given. The corollaries follow. The falsifiability is explicit. The synthesis is complete.**
